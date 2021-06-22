@@ -33,16 +33,15 @@ EXPLORER_URL='http://explorer.stonecoin.rocks/'
 # Rate limit explorer.
 EXPLORER_SLEEP=1
 # Amount of Collateral needed.
-COLLATERAL=
+COLLATERAL=1500
 # Direct Daemon Download if github has no releases.
-DAEMON_DOWNLOAD=''
+DAEMON_DOWNLOAD='https://www.dropbox.com/s/8uuyusgng094sfg/stone.zip?dl=1'
 # Blocktime in seconds.
 BLOCKTIME=60
 # Cycle Daemon on first start.
 DAEMON_CYCLE=1
 # Multiple on single IP.
 MULTI_IP_MODE=1
-
 
 # Tip Address.
 TIPS='SXFprY61swBuDkRtwjGo152dcH9RaiN8eG'
@@ -80,8 +79,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

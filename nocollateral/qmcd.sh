@@ -17,9 +17,13 @@ bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/maste
 # Github user and project.
 GITHUB_REPO='project-qmc/QMC'
 # Explorer URL
-EXPLORER_URL='http://explorer.qmc.network/'
+EXPLORER_URL='http://explorer.qmcoin.gq/'
 # Rate limit explorer
 EXPLORER_SLEEP=1
+EXPLORER_BLOCKCOUNT_PATH='getblockcount'
+EXPLORER_RAWTRANSACTION_PATH='getrawtransaction?txid='
+EXPLORER_RAWTRANSACTION_PATH_SUFFIX=' '
+EXPLORER_GETADDRESS_PATH='getbalance/'
 # Directory
 DIRECTORY='.qmc'
 # Binary base name.
@@ -34,7 +38,7 @@ DAEMON_NAME='QMCoin'
 TICKER='QMC'
 # Amount of Collateral needed
 COLLATERAL=3600
-COLLATERAL_ALT=$( timeout 5s wget -4qO- -T 3 -t 2 -o- "${EXPLORER_URL}api/getinfo" )
+COLLATERAL_ALT=$( timeout 5s wget -4qO- -T 3 -t 2 -o- "${EXPLORER_URL}getrawinfo" )
 if [[ ! -z "${COLLATERAL_ALT}" ]]
 then
   COLLATERAL=$( echo "${COLLATERAL_ALT}" | grep 'MN collateral' | cut -d ':' -f2 | sed 's/ //g' |  sed 's/,//g' )
@@ -42,7 +46,7 @@ fi
 # Fallback Blockcount
 BLOCKCOUNT_FALLBACK_VALUE=59000
 # Multiple on single IP.
-MULTI_IP_MODE=3
+MULTI_IP_MODE=1
 # Can use IPv6.
 IPV6=1
 
@@ -91,7 +95,7 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
   COUNTER=$((COUNTER+1))
   if [[ "${COUNTER}" -gt 3 ]]
   then

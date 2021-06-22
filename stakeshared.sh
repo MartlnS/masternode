@@ -29,7 +29,7 @@ CONF='stakeshare.conf'
 # Port.
 DEFAULT_PORT=5515
 # Amount of Collateral needed.
-COLLATERAL=2000
+COLLATERAL=8000
 # Explorer URL
 EXPLORER_URL='http://explorer.stakeshare.io/'
 # Cycle Daemon
@@ -86,7 +86,7 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
   COUNTER=$((COUNTER+1))
   if [[ "${COUNTER}" -gt 3 ]]
   then

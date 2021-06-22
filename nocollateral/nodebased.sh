@@ -38,22 +38,16 @@ COLLATERAL=1000
 DAEMON_DOWNLOAD=''
 # Blocktime in seconds.
 BLOCKTIME=60
-# Cycle Daemon on first start.
-DAEMON_CYCLE=1
 # Multiple on single IP.
 MULTI_IP_MODE=1
 
 
 # Tip Address.
-TIPS='CbPwQV1vdy3Q7CGqbFCkt3K1LgRs1Air2P'
+TIPS='Ceh9ftEkseHmioshP1m9xMvm2RW4H1cYPY'
 # Dropbox Addnodes.
 DROPBOX_ADDNODES='r5a8a9ru6z7p4e9'
-# If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=1
 # Dropbox Bootstrap.
 DROPBOX_BOOTSTRAP='it6fhh0jbp9acb4'
-# If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=1
 # Dropbox blocks and chainstake folders.
 DROPBOX_BLOCKS_N_CHAINS='6dxs7zztfq57kus'
 
@@ -80,8 +74,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

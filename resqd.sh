@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck disable=SC2034
 
-# Copyright (c) 2018
+# Copyright (c) 2019
 # All rights reserved.
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
@@ -15,49 +15,43 @@ bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/maste
 '
 
 # Github user and project.
-GITHUB_REPO='RESQ-Chain/resq-chain'
+GITHUB_REPO='RESQ-Chain/RESQ'
 # Display Name.
-DAEMON_NAME='Resq Core'
+DAEMON_NAME='RESQ Core'
 # Coin Ticker.
 TICKER='RESQ'
 # Binary base name.
 BIN_BASE='resq'
 # Directory.
-DIRECTORY='.resqcore'
+DIRECTORY='.resq'
 # Conf File.
 CONF='resq.conf'
 # Port.
-DEFAULT_PORT=19988
-# Explorer URL
-EXPLORER_URL='http://explorer.resqchain.org:3001/'
+DEFAULT_PORT=13200
+# Explorer URL.
+EXPLORER_URL='http://explorer.resqchain.org/'
+# Rate limit explorer.
+EXPLORER_SLEEP=1
 # Amount of Collateral needed.
 COLLATERAL=300000
+# Direct Daemon Download if github has no releases.
+DAEMON_DOWNLOAD=''
 # Blocktime in seconds.
-BLOCKTIME=150
+BLOCKTIME=60
 # Cycle Daemon on first start.
 DAEMON_CYCLE=1
-
-# Tip Address
-TIPS='QVLGsb3byATeLGxggGB9ajY5uFRLZUAxtH'
-# Dropbox Addnodes
-DROPBOX_ADDNODES='0i7bqbwnit5dh1u'
-# If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=0
-# Dropbox Bootstrap
-DROPBOX_BOOTSTRAP='sql7cq5tviesgq2'
-# If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=0
-# Dropbox blocks and chainstake folders.
-DROPBOX_BLOCKS_N_CHAINS='v41turql84hqx0s'
-
 # Multiple on single IP.
-MULTI_IP_MODE=3
-# Mini Monitor check masternode list.
-MINI_MONITOR_MN_LIST=1
-# Mini Monitor Status to check for.
-MINI_MONITOR_MN_STATUS='Masternode successfully started'
-# Mini Monitor masternode count is a json string.
-MINI_MONITOR_MN_COUNT_JSON=1
+MULTI_IP_MODE=1
+
+
+# Tip Address.
+TIPS='qcfN3SbX8kBu2hPQEWi2gKp5wwVyACqNhC'
+# Dropbox Addnodes.
+DROPBOX_ADDNODES='01vm5odeqyyswx2'
+# Dropbox Bootstrap.
+DROPBOX_BOOTSTRAP='ehka65zuged0pzs'
+# Dropbox blocks and chainstake folders.
+DROPBOX_BLOCKS_N_CHAINS='pyla6w27ix18xv0'
 
 ASCII_ART () {
 echo -e "\e[0m"
@@ -83,8 +77,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo
@@ -107,4 +101,5 @@ DAEMON_SETUP_THREAD
 )
 # shellcheck source=/root/.bashrc
 . ~/.bashrc
-stty sane
+stty sane 2>/dev/null
+

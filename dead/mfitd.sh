@@ -9,68 +9,69 @@
 # Run this file
 
 ```
-bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/glpmd.sh)" ; source ~/.bashrc
+bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/mfitd.sh)" ; source ~/.bashrc
 ```
 
 '
 
 # Github user and project.
-GITHUB_REPO='GLPMCORE/GLPM'
+GITHUB_REPO='muayfitcoin/muayfitcoin'
 # Display Name.
-DAEMON_NAME='GLPM Core'
+DAEMON_NAME='Muayfit Core'
 # Coin Ticker.
-TICKER='GLPM'
+TICKER='MFIT'
 # Binary base name.
-BIN_BASE='GLPM'
+BIN_BASE='mfit'
 # Directory.
-DIRECTORY='.GLPM2'
+DIRECTORY='.mfit'
 # Conf File.
-CONF='GLPM2.conf'
+CONF='mfit.conf'
 # Port.
-DEFAULT_PORT=31999
+DEFAULT_PORT=1188
 # Explorer URL
-EXPLORER_URL='http://glpm.dynu.net/'
+EXPLORER_URL='http://142.93.162.83/'
 # Amount of Collateral needed.
-COLLATERAL=10000
-# Blocktime in seconds.
-BLOCKTIME=120
-# Multiple on single IP.
-MULTI_IP_MODE=1
-
-ASCII_ART () {
-echo -e "\\e[0m"
-clear 2> /dev/null
-cat << "GLACIER"
-   ___ _            _               ___ _       _    __
-  / _ \ | __ _  ___(_) ___ _ __    / _ \ | __ _| |_ / _| ___  _ __ _ __ ___
- / /_\/ |/ _` |/ __| |/ _ \ '__|  / /_)/ |/ _` | __| |_ / _ \| '__| '_ ` _ \
-/ /_\\| | (_| | (__| |  __/ |    / ___/| | (_| | |_|  _| (_) | |  | | | | | |
-\____/|_|\__,_|\___|_|\___|_|    \/    |_|\__,_|\__|_|  \___/|_|  |_| |_| |_|
-
-GLACIER
-}
+COLLATERAL=1000
+# Cycle Daemon on first start.
+DAEMON_CYCLE=1
 
 # Tip Address
-TIPS='GPzrjPZZzja7J2Yk8AqpHoi4XfwdaJmyvn'
+TIPS=''
 # Dropbox Addnodes
-DROPBOX_ADDNODES='w6fhrqegibu7fqq'
+DROPBOX_ADDNODES='po6435skmevi9kj'
 # If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=0
+USE_DROPBOX_ADDNODES=1
 # Dropbox Bootstrap
-DROPBOX_BOOTSTRAP='ihs1lqnow2i79lq'
+DROPBOX_BOOTSTRAP='ev9a8cuzmf98ypz'
 # If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=0
+USE_DROPBOX_BOOTSTRAP=1
 # Dropbox blocks and chainstake folders.
-DROPBOX_BLOCKS_N_CHAINS='rl6ig0syypq6bwf'
+DROPBOX_BLOCKS_N_CHAINS='us53omtgemg16jb'
 
+# Multiple on single IP.
+MULTI_IP_MODE=3
 # Mini Monitor check masternode list.
 MINI_MONITOR_MN_LIST=1
 # Mini Monitor Status to check for.
 MINI_MONITOR_MN_STATUS='4'
-# Mini Monitor Queue Payouts.
-MINI_MONITOR_MN_QUEUE=1
 # Mini Monitor masternode count is a json string.
 MINI_MONITOR_MN_COUNT_JSON=1
+
+ASCII_ART () {
+echo -e "\e[0m"
+clear 2> /dev/null
+cat << "MFIT"
+
+ ,.       ___      ___ ____  ____      __      ___  ___ _______ __ ___________
+ \-'__   |"  \    /"  ("  _||_ " |    /""\    |"  \/"  /"     "|" ("     _   ")
+/ o.__o___\   \  //   |   (  ) : |   /    \    \   \  (: ______)|  )__/  \\__/
+\/_/ /.___/\\  \/.    (:  |  | . )  /' /\  \    \\  \/ \/    | |:  |  \\_ /
+  ||\'   |: \.        |\\ \__/ //  //  __'  \   /   /  // ___) |.  |  |.  |
+  | /    |.  \    /:  |/\\ __ //\ /   /  \\  \ /   /  (:  (    /\  |\ \:  |
+  \_\    |___|\__/|___(__________|___/    \___)___/    \__/   (__\_|_) \__|
+
+MFIT
+}
 
 # Discord User Info
 # @mcarper#0918
@@ -82,8 +83,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=$((COUNTER+1))
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo
@@ -98,10 +99,13 @@ done
   rm ~/___mn.sh
 ) & disown
 
+(
 # shellcheck disable=SC1091
 # shellcheck source=/root/___mn.sh
 . ~/___mn.sh
 DAEMON_SETUP_THREAD
+)
 # shellcheck source=/root/.bashrc
 . ~/.bashrc
 stty sane
+

@@ -38,29 +38,24 @@ EXPLORER_SLEEP=1
 # Amount of Collateral needed.
 COLLATERAL=100000
 # Cycle Daemon on first start.
-DAEMON_CYCLE=1
+DAEMON_CYCLE=0
+# Slow Daemon Start.
+SLOW_DAEMON_START=0
+# Multiple on single IP.
+MULTI_IP_MODE=1
+# Daemon segfaults when adding masternodeprivkey to conf.
+MN_KEY_SEGV=1
+
 
 # Tip Address
 TIPS='MRwqWT27m1WhpRR8XSHWvbcj7uetU8D3gD'
 # Dropbox Addnodes
 DROPBOX_ADDNODES='xdzoc7ntncapimr'
-# If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=1
 # Dropbox Bootstrap
 DROPBOX_BOOTSTRAP='e9zzivi3lhb3hxx'
-# If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=1
 # Dropbox blocks and chainstake folders.
 DROPBOX_BLOCKS_N_CHAINS='zsgq3ehhu13k1ew'
 
-# Multiple on single IP.
-MULTI_IP_MODE=1
-# Mini Monitor check masternode list.
-MINI_MONITOR_MN_LIST=1
-# Mini Monitor Status to check for.
-MINI_MONITOR_MN_STATUS='4'
-# Mini Monitor masternode count is a json string.
-MINI_MONITOR_MN_COUNT_JSON=1
 
 ASCII_ART () {
 echo -e "\e[0m"
@@ -89,8 +84,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

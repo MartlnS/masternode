@@ -31,10 +31,9 @@ DEFAULT_PORT=22629
 # Explorer URL.
 EXPLORER_URL='https://explorer.graphcoin.net/'
 # Amount of Collateral needed.
-COLLATERAL=5000
+COLLATERAL=50000
 # Direct Daemon Download if github has no releases.
-DAEMON_DOWNLOAD='https://github.com/Graphcoin/downloads/raw/master/Linux_x64/graphcoind
-https://github.com/Graphcoin/downloads/raw/master/Linux_x64/graphcoin-cli'
+DAEMON_DOWNLOAD=''
 # Blocktime in seconds.
 BLOCKTIME=60
 # Cycle Daemon on first start.
@@ -79,8 +78,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

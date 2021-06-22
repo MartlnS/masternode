@@ -54,7 +54,7 @@ USE_DROPBOX_BOOTSTRAP=1
 DROPBOX_BLOCKS_N_CHAINS='scjugxv8kco8z86'
 
 # Multiple on single IP.
-MULTI_IP_MODE=2
+MULTI_IP_MODE=3
 # Mini Monitor check masternode list.
 MINI_MONITOR_MN_LIST=0
 # Mini Monitor Status to check for.
@@ -72,7 +72,7 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
   COUNTER=$((COUNTER+1))
   if [[ "${COUNTER}" -gt 3 ]]
   then

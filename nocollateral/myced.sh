@@ -38,7 +38,9 @@ EXPLORER_SLEEP=1
 # Amount of Collateral needed.
 COLLATERAL=100000
 # Cycle Daemon on first start.
-DAEMON_CYCLE=1
+DAEMON_CYCLE=0
+# Slow Daemon Start.
+SLOW_DAEMON_START=1
 
 # Tip Address
 TIPS='MRwqWT27m1WhpRR8XSHWvbcj7uetU8D3gD'
@@ -89,8 +91,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

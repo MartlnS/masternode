@@ -9,47 +9,49 @@
 # Run this file
 
 ```
-bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/mfitd.sh)" ; source ~/.bashrc
+bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/specialcoind.sh)" ; source ~/.bashrc
 ```
 
 '
 
 # Github user and project.
-GITHUB_REPO='muayfitcoin/muayfitcoin'
+GITHUB_REPO='Specialcoindev/SPCC-CORE'
 # Display Name.
-DAEMON_NAME='Muayfit Core'
+DAEMON_NAME='SpecialCoin'
 # Coin Ticker.
-TICKER='MFIT'
+TICKER='SPCC'
 # Binary base name.
-BIN_BASE='mfit'
+BIN_BASE='specialcoin'
 # Directory.
-DIRECTORY='.mfit'
+DIRECTORY='.specialcoin'
 # Conf File.
-CONF='mfit.conf'
+CONF='specialcoin.conf'
 # Port.
-DEFAULT_PORT=1188
+DEFAULT_PORT=21013
 # Explorer URL
-EXPLORER_URL='http://142.93.162.83/'
+EXPLORER_URL='http://192.241.138.224:3003/'
 # Amount of Collateral needed.
 COLLATERAL=1000
+# Number of Connections to wait for.
+DAEMON_CONNECTIONS=2
 # Cycle Daemon on first start.
 DAEMON_CYCLE=1
 
 # Tip Address
-TIPS=''
+TIPS='CH6uZC2oudXtFYLriGgw6pcaRQ8uhQrcnQ'
 # Dropbox Addnodes
-DROPBOX_ADDNODES='po6435skmevi9kj'
+DROPBOX_ADDNODES='gk6gw8vtrqc1b7r'
 # If set to 1 then use addnodes from dropbox.
 USE_DROPBOX_ADDNODES=1
 # Dropbox Bootstrap
-DROPBOX_BOOTSTRAP='ev9a8cuzmf98ypz'
+DROPBOX_BOOTSTRAP='5vrqt2t4cmwpd0h'
 # If set to 1 then use bootstrap from dropbox.
 USE_DROPBOX_BOOTSTRAP=1
 # Dropbox blocks and chainstake folders.
-DROPBOX_BLOCKS_N_CHAINS='us53omtgemg16jb'
+DROPBOX_BLOCKS_N_CHAINS='8wi1qpbl4x1nmxn'
 
 # Multiple on single IP.
-MULTI_IP_MODE=3
+MULTI_IP_MODE=1
 # Mini Monitor check masternode list.
 MINI_MONITOR_MN_LIST=1
 # Mini Monitor Status to check for.
@@ -58,19 +60,19 @@ MINI_MONITOR_MN_STATUS='4'
 MINI_MONITOR_MN_COUNT_JSON=1
 
 ASCII_ART () {
-echo -e "\e[0m"
+echo -e "\\e[0m"
 clear 2> /dev/null
-cat << "MFIT"
+cat << "SPECIALCOIN"
+                            _____                 _       _  _____      _
+      ______ ______        / ____|               (_)     | |/ ____|    (_)
+    _/      |      \_     | (___  _ __   ___  ___ _  __ _| | |     ___  _ _ __
+   // ~~ ~~ | ~~ ~  \\     \___ \| '_ \ / _ \/ __| |/ _` | | |    / _ \| | '_ \
+  // ~ ~ ~~ | ~~~ ~~ \\    ____) | |_) |  __/ (__| | (_| | | |___| (_) | | | | |
+ //________.|.________\\  |_____/| .__/ \___|\___|_|\__,_|_|\_____\___/|_|_| |_|
+'----------'-'----------'        | |
+                                 |_|
 
- ,.       ___      ___ ____  ____      __      ___  ___ _______ __ ___________
- \-'__   |"  \    /"  ("  _||_ " |    /""\    |"  \/"  /"     "|" ("     _   ")
-/ o.__o___\   \  //   |   (  ) : |   /    \    \   \  (: ______)|  )__/  \\__/
-\/_/ /.___/\\  \/.    (:  |  | . )  /' /\  \    \\  \/ \/    | |:  |  \\_ /
-  ||\'   |: \.        |\\ \__/ //  //  __'  \   /   /  // ___) |.  |  |.  |
-  | /    |.  \    /:  |/\\ __ //\ /   /  \\  \ /   /  (:  (    /\  |\ \:  |
-  \_\    |___|\__/|___(__________|___/    \___)___/    \__/   (__\_|_) \__|
-
-MFIT
+SPECIALCOIN
 }
 
 # Discord User Info
@@ -83,8 +85,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$((COUNTER+1))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo
@@ -108,4 +110,3 @@ DAEMON_SETUP_THREAD
 # shellcheck source=/root/.bashrc
 . ~/.bashrc
 stty sane
-

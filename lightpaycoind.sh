@@ -29,7 +29,7 @@ CONF='lightpaycoin.conf'
 # Port.
 DEFAULT_PORT=39797
 # Explorer URL.
-EXPLORER_URL='http://explorer.lightpaycoin.org:3001/'
+EXPLORER_URL='http://explorer2.lightpaycoin.org/'
 # Rate limit explorer.
 EXPLORER_SLEEP=1
 # Amount of Collateral needed.
@@ -43,7 +43,8 @@ DAEMON_CYCLE=1
 # Multiple on single IP.
 MULTI_IP_MODE=1
 IPV6=1
-
+# Use addnode and not connect.
+USE_CONNECT=0
 
 # Tip Address.
 TIPS='LrRkDTmZNsns9UZjTx5q37eBatJwwFCXRp'
@@ -81,8 +82,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

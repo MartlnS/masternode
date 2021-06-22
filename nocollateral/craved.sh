@@ -29,33 +29,20 @@ CONF='crave.conf'
 # Port.
 DEFAULT_PORT=48882
 # Explorer URL
-EXPLORER_URL='http://explorer.craveproject.net/'
+EXPLORER_URL='https://explorersite.cc/'
 # Amount of Collateral needed.
 COLLATERAL=5000
-# Cycle Daemon on first start.
-DAEMON_CYCLE=1
+# Multiple on single IP.
+MULTI_IP_MODE=0
 
 # Tip Address
-TIPS='VQpV3agw3LwhNJeZpuQFidWGwao2PKLPLz'
+TIPS='VU3k5kEM1KCgFN9bB2CeTbXEDMxtCnQsCp'
 # Dropbox Addnodes
-DROPBOX_ADDNODES='4dcu0mwtl4c10vq'
-# If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=1
+DROPBOX_ADDNODES='5sb6ldfihlky2e7'
 # Dropbox Bootstrap
-DROPBOX_BOOTSTRAP='two26u19dz1wm8i'
-# If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=1
+DROPBOX_BOOTSTRAP='th3h5s16acnq67w'
 # Dropbox blocks and chainstake folders.
-DROPBOX_BLOCKS_N_CHAINS='ix72th3bwmrsotk'
-
-# Multiple on single IP.
-MULTI_IP_MODE=1
-# Mini Monitor check masternode list.
-MINI_MONITOR_MN_LIST=1
-# Mini Monitor Status to check for.
-MINI_MONITOR_MN_STATUS='4'
-# Mini Monitor masternode count is a json string.
-MINI_MONITOR_MN_COUNT_JSON=1
+DROPBOX_BLOCKS_N_CHAINS='bpi8b92cetqy8lr'
 
 ASCII_ART () {
 echo -e "\e[0m"
@@ -81,8 +68,8 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
-  COUNTER=1
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
+  COUNTER=$(( COUNTER + 1 ))
   if [[ "${COUNTER}" -gt 3 ]]
   then
     echo

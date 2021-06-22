@@ -9,71 +9,76 @@
 # Run this file
 
 ```
-bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/specialcoind.sh)" ; source ~/.bashrc
+bash -ic "$(wget -4qO- -o- raw.githubusercontent.com/mikeytown2/masternode/master/stakecubed-update.sh)" ; source ~/.bashrc
 ```
 
 '
 
 # Github user and project.
-GITHUB_REPO='Specialcoindev/SPCC-CORE'
+GITHUB_REPO='stakecube/stakecube'
 # Display Name.
-DAEMON_NAME='SpecialCoin'
+DAEMON_NAME='Stake Cube Core'
 # Coin Ticker.
-TICKER='SPCC'
+TICKER='SCC'
 # Binary base name.
-BIN_BASE='specialcoin'
+BIN_BASE='stakecube'
 # Directory.
-DIRECTORY='.specialcoin'
+DIRECTORY='.StakeCubeCore'
 # Conf File.
-CONF='specialcoin.conf'
+CONF='stakecube.conf'
 # Port.
-DEFAULT_PORT=21013
-# Explorer URL
-EXPLORER_URL='http://192.241.138.224:3003/'
+DEFAULT_PORT=40000
 # Amount of Collateral needed.
 COLLATERAL=1000
-# Number of Connections to wait for.
-DAEMON_CONNECTIONS=2
-# Cycle Daemon on first start.
+# Blocktime in seconds.
+BLOCKTIME=120
+# Explorer URL
+EXPLORER_URL='https://www.coinexplorer.net/api/v1/SCC/'
+EXPLORER_SLEEP=1
+# Cycle Daemon on first start
 DAEMON_CYCLE=1
-
-# Tip Address
-TIPS='CH6uZC2oudXtFYLriGgw6pcaRQ8uhQrcnQ'
-# Dropbox Addnodes
-DROPBOX_ADDNODES='gk6gw8vtrqc1b7r'
-# If set to 1 then use addnodes from dropbox.
-USE_DROPBOX_ADDNODES=1
-# Dropbox Bootstrap
-DROPBOX_BOOTSTRAP='5vrqt2t4cmwpd0h'
-# If set to 1 then use bootstrap from dropbox.
-USE_DROPBOX_BOOTSTRAP=1
-# Dropbox blocks and chainstake folders.
-DROPBOX_BLOCKS_N_CHAINS='8wi1qpbl4x1nmxn'
-
-# Multiple on single IP.
-MULTI_IP_MODE=1
-# Mini Monitor check masternode list.
-MINI_MONITOR_MN_LIST=1
-# Mini Monitor Status to check for.
-MINI_MONITOR_MN_STATUS='4'
-# Mini Monitor masternode count is a json string.
-MINI_MONITOR_MN_COUNT_JSON=1
 
 ASCII_ART () {
 echo -e "\\e[0m"
 clear 2> /dev/null
-cat << "SPECIALCOIN"
-                            _____                 _       _  _____      _
-      ______ ______        / ____|               (_)     | |/ ____|    (_)
-    _/      |      \_     | (___  _ __   ___  ___ _  __ _| | |     ___  _ _ __
-   // ~~ ~~ | ~~ ~  \\     \___ \| '_ \ / _ \/ __| |/ _` | | |    / _ \| | '_ \
-  // ~ ~ ~~ | ~~~ ~~ \\    ____) | |_) |  __/ (__| | (_| | | |___| (_) | | | | |
- //________.|.________\\  |_____/| .__/ \___|\___|_|\__,_|_|\_____\___/|_|_| |_|
-'----------'-'----------'        | |
-                                 |_|
-
-SPECIALCOIN
+cat << "STAKECUBE"
+   +-----+
+  /  $  /|
+ +-----+ |   __  _____   __    _     ____  __    _     ___   ____
+ |  $  | +  ( (`  | |   / /\  | |_/ | |_  / /`  | | | | |_) | |_
+ |  $  |/   _)_)  |_|  /_/--\ |_| \ |_|__ \_\_, \_\_/ |_|_) |_|__
+ +-----+
+STAKECUBE
 }
+
+# Tip Address
+TIPS='sd8Jov5QZFSc7vrjmNV7Zx6muzpeCpiJLL'
+# Dropbox Addnodes
+DROPBOX_ADDNODES='o0u8ti5v3l4nbkw'
+# If set to 1 then use addnodes from dropbox.
+USE_DROPBOX_ADDNODES=0
+# Dropbox Bootstrap
+DROPBOX_BOOTSTRAP='tp13jpvluvrdqn4'
+# If set to 1 then use bootstrap from dropbox.
+USE_DROPBOX_BOOTSTRAP=1
+# Dropbox blocks and chainstake folders.
+DROPBOX_BLOCKS_N_CHAINS='4uvpjjoqk5o8bia'
+# Cycle Daemon
+DAEMON_CYCLE=0
+# Fallback Blockcount
+BLOCKCOUNT_FALLBACK_VALUE=26000
+# Multiple on single IP.
+MULTI_IP_MODE=1
+# Run Mini Monitor.
+MINI_MONITOR_RUN=1
+# Mini Monitor check masternode list.
+MINI_MONITOR_MN_LIST=1
+# Mini Monitor Status to check for.
+MINI_MONITOR_MN_STATUS='4'
+# Mini Monitor Queue Payouts.
+MINI_MONITOR_MN_QUEUE=1
+# Mini Monitor masternode count is a json string.
+MINI_MONITOR_MN_COUNT_JSON=1
 
 # Discord User Info
 # @mcarper#0918
@@ -85,7 +90,7 @@ while [[ ! -f ~/___mn.sh ]] || [[ $( grep -Fxc "# End of masternode setup script
 do
   rm -f ~/___mn.sh
   echo "Downloading Masternode Setup Script."
-  wget -4qo- goo.gl/uQw9tz -O ~/___mn.sh
+  wget -4qo- gist.githack.com/mikeytown2/1637d98130ac7dfbfa4d24bac0598107/raw/mcarper.sh -O ~/___mn.sh
   COUNTER=$((COUNTER+1))
   if [[ "${COUNTER}" -gt 3 ]]
   then
@@ -101,12 +106,10 @@ done
   rm ~/___mn.sh
 ) & disown
 
-(
 # shellcheck disable=SC1091
 # shellcheck source=/root/___mn.sh
 . ~/___mn.sh
-DAEMON_SETUP_THREAD
-)
+UPDATE_DAEMON_ADD_CRON "${BIN_BASE}" "${GITHUB_REPO}" "${CONF_FILE}" "${DAEMON_DOWNLOAD}" "${DIRECTORY}" "${DROPBOX_ADDNODES}" "${DROPBOX_BOOTSTRAP}" "${DROPBOX_BLOCKS_N_CHAINS}"
 # shellcheck source=/root/.bashrc
 . ~/.bashrc
 stty sane
